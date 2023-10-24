@@ -38,6 +38,12 @@ namespace Veturilo.Application.Services
             return stationRepository.GetAll().ToList();
         }
 
+        public Station GetStation(int id)
+        {
+            var station = stationRepository.Get(id) ?? throw new ItemNotExistsException(id, nameof(Station));
+            return station;
+        }
+
         public List<Bike> GetBikesFromStation(int stationId)
         {
             return bikeRepository.FindAll(x => x.Station.Id == stationId).ToList();

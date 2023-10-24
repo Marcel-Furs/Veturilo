@@ -14,5 +14,6 @@ namespace Veturilo.Application.Services
         public Rent RentBike(int userId, int bikeId, int stationFromId);
         public Rent EndBikeRental(int rentId, int stationToId);
         public List<Rent> GetUserRents(int userId);
+        public Station GetStation(int id);
     }
 }

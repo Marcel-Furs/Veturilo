@@ -25,7 +25,7 @@ builder.Services.AddSingleton<IBaseRepository<Rent>, BaseListRepository<Rent>>()
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRentService, RentService>();
-builder.Services.AddScoped<IPasswordService, HmacPasswordService>();
+builder.Services.AddSingleton<IPasswordService, HmacPasswordService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -61,5 +61,7 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.SeedStations();
+app.SeedUsers();
+app.SeedBikes();
 
 app.Run();

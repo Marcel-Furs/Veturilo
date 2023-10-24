@@ -23,5 +23,17 @@ namespace Veturilo.API.Controllers
         {
             return Ok(rentService.GetAllStations());
         }
+
+        [HttpGet("{id}")]
+        public IActionResult GetStation(int id)
+        {
+            return Ok(rentService.GetStation(id));
+        }
+
+        [HttpGet("{id}/bikes")]
+        public IActionResult GetBikesFromStation(int id)
+        {
+            return Ok(rentService.GetBikesFromStation(id));
+        }
     }
 }
