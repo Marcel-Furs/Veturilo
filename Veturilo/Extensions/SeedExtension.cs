@@ -106,7 +106,8 @@ namespace Veturilo.API.Extensions
                 bikeRepository.Add(new Bike
                 {
                     Name = "Bike" + i,
-                    Station = stations[rand.Next(0, stations.Count)]
+                    Station = stations[rand.Next(0, stations.Count)],
+                    Status = "Available"
                 });
             }
         }

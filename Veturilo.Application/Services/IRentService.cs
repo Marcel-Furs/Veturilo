@@ -12,7 +12,7 @@ namespace Veturilo.Application.Services
         public List<Station> GetAllStations();
         public List<Bike> GetBikesFromStation(int stationId);
         public Rent RentBike(int userId, int bikeId, int stationFromId);
-        public Rent EndBikeRental(int rentId, int stationToId);
+        Rent FinishRentBike(int userId, int rentId, int stationToId);
         public List<Rent> GetUserRents(int userId);
         public Station GetStation(int id);
     }

@@ -28,11 +28,6 @@ namespace Veturilo.Application.Services
             this.bikeRepository = bikeRepository;
         }
 
-        public Rent EndBikeRental(int rentId, int stationToId)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Station> GetAllStations()
         {
             return stationRepository.GetAll().ToList();
@@ -46,7 +41,7 @@ namespace Veturilo.Application.Services
 
         public List<Bike> GetBikesFromStation(int stationId)
         {
-            return bikeRepository.FindAll(x => x.Station.Id == stationId).ToList();
+            return bikeRepository.FindAll(x => x.Station.Id == stationId && x.Status == "Available").ToList();
         }
 
         public List<Rent> GetUserRents(int userId)
