@@ -41,7 +41,7 @@ namespace Veturilo.Application.Services
 
         public List<Bike> GetBikesFromStation(int stationId)
         {
-            return bikeRepository.FindAll(x => x.Station.Id == stationId && x.Status == "Available").ToList();
+            return bikeRepository.FindAll(x => x.Station.Id == stationId && x.Status == Bike.AvailableStatus).ToList();
         }
 
         public List<Rent> GetUserRents(int userId)
@@ -55,11 +55,14 @@ namespace Veturilo.Application.Services
             var bike = bikeRepository.Get(bikeId) ?? throw new ItemNotExistsException(bikeId, nameof(Bike)); 
             var stationFrom = stationRepository.Get(stationFromId) ?? throw new ItemNotExistsException(stationFromId, nameof(Station));
 
+            bike.Status = Bike.UnavailableStatus;
+
             var rent = new Rent
             {
                 DateStart = DateTime.Now,
                 StationFrom = stationFrom,
-                User = user
+                User = user,
+                Bike = bike
             };
             return rentRepository.Add(rent);
         }

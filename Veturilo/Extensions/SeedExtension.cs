@@ -107,7 +107,7 @@ namespace Veturilo.API.Extensions
                 {
                     Name = "Bike" + i,
                     Station = stations[rand.Next(0, stations.Count)],
-                    Status = "Available"
+                    Status = Bike.AvailableStatus
                 });
             }
         }

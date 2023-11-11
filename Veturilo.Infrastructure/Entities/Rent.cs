@@ -15,5 +15,6 @@ namespace Veturilo.Infrastructure.Entities
         public DateTime DateStart { get; set; }
         public DateTime? DateStop { get; set; } = null;
         public double? FinalPrice { get; set; } = null;
+        public Bike Bike { get; set; } = null!;
     }
 }

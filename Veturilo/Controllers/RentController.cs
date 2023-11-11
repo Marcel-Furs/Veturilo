@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Veturilo.API.Attributes;
 using Veturilo.API.Dto;
@@ -14,10 +15,12 @@ namespace Veturilo.API.Controllers
     public class RentController : ControllerBase
     {
         private IRentService rentService;
+        private readonly IMapper mapper;
 
-        public RentController(IRentService rentService)
+        public RentController(IRentService rentService, IMapper mapper)
         {
             this.rentService = rentService;
+            this.mapper = mapper;
         }
 
         [HttpPost]
@@ -32,6 +35,13 @@ namespace Veturilo.API.Controllers
             {
                 return BadRequest(new { Message = ex.Message });
             }
+        }
+
+        [HttpGet]
+        public IActionResult GetRents()
+        {
+            var rents = rentService.GetUserRents(User.GetUserId());
+            return Ok(mapper.Map<List<RentDto>>(rents));
         }
     }
 }
