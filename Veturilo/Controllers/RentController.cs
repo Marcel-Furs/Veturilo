@@ -43,5 +43,19 @@ namespace Veturilo.API.Controllers
             var rents = rentService.GetUserRents(User.GetUserId());
             return Ok(mapper.Map<List<RentDto>>(rents));
         }
+
+        [HttpPost("finish")]
+        public IActionResult FinishRentBike(FinishRentBikeDto finishRentBikeDto)
+        {
+            try
+            {
+                var rent = rentService.FinishRentBike(User.GetUserId(), finishRentBikeDto.RentId, finishRentBikeDto.StationId);
+                return Ok(new { Message = "Success", RentId = rent.Id });
+            }
+            catch (ItemNotExistsException ex)
+            {
+                return BadRequest(new { Message = ex.Message });
+            }
+        }
     }
 }
